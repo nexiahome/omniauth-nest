@@ -28,6 +28,9 @@ module OmniAuth
         :token_url     => '/oauth2/access_token'
       }
 
+      def authorize_params
+        super.merge(state: request.params["state"])
+      end
     end
   end
 end
