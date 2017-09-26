@@ -38,6 +38,12 @@ module OmniAuth
         session["omniauth.expected_state"] = session["omniauth.state"]
         super
       end
+
+      # https://github.com/intridea/omniauth-oauth2/issues/93#issuecomment-257319242
+      # A bad merge broke most of the oauth2 gems for omniauth
+      def callback_url
+        full_host + script_name + callback_path
+      end
     end
   end
 end
